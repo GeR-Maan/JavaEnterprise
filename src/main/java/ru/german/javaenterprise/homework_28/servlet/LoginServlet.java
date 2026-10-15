@@ -1,12 +1,12 @@
 package ru.german.javaenterprise.homework_28.servlet;
 
-import by.tms.lesson2842onl.model.Account;
-import by.tms.lesson2842onl.storage.InMemoryAccountStorage;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ru.german.javaenterprise.homework_28.model.Account;
+import ru.german.javaenterprise.homework_28.storage.InMemoryAccountStorage;
 
 import java.io.IOException;
 import java.util.Optional;

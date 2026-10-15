@@ -1,6 +1,8 @@
 package ru.german.javaenterprise.homework_28.storage;
 
-import by.tms.lesson2842onl.model.Post;
+
+
+import ru.german.javaenterprise.homework_28.model.Post;
 
 import java.util.ArrayList;
 import java.util.List;

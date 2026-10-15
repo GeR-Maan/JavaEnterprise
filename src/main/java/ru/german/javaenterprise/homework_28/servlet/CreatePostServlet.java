@@ -1,14 +1,14 @@
 package ru.german.javaenterprise.homework_28.servlet;
 
-import by.tms.lesson2842onl.model.Account;
-import by.tms.lesson2842onl.model.Post;
-import by.tms.lesson2842onl.storage.InMemoryPostStorage;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import ru.german.javaenterprise.homework_28.model.Account;
+import ru.german.javaenterprise.homework_28.model.Post;
+import ru.german.javaenterprise.homework_28.storage.InMemoryPostStorage;
 
 import java.io.IOException;
 
