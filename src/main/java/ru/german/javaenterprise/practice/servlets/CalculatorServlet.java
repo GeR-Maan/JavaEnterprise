@@ -1,4 +1,4 @@
-package ru.german.javaenterprise;
+package ru.german.javaenterprise.practice.servlets;
 
 
 import jakarta.servlet.ServletException;

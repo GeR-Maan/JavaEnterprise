@@ -30,4 +30,6 @@ public class GreetingServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/pages/greeting.jsp").forward(req, resp);
     }
 
+
+
 }
