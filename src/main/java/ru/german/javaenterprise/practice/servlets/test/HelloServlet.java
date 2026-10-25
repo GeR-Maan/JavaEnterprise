@@ -1,4 +1,4 @@
-package ru.german.javaenterprise.practice.servlets;
+package ru.german.javaenterprise.practice.servlets.test;
 
 import java.io.*;
 

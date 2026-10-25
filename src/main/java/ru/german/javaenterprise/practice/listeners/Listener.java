@@ -13,7 +13,11 @@ public class Listener implements ServletContextListener, HttpSessionListener, Ht
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         ServletContext servletContext = sce.getServletContext();
         servletContext.setAttribute("greetings", "listener");
 
