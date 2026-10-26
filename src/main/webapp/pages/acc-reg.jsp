@@ -12,11 +12,11 @@
 </head>
 <body>
 <form action="/account/reg" method="post">
-    <input type="text" name="name" placeholder="Name">
-    <input type="email" name="email" placeholder="email">
-    <input type = "text" name = "username" placeholder="Username">
-    <input type="text" name="password" placeholder="Password">
-    <button>Submit</button>
+    <input type="text" name="name" placeholder="Enter your name" />
+    <input type="email" name="email" placeholder="Enter your email" />
+    <input type="text" name="username" placeholder="Enter your username" />
+    <input type="text" name="password" placeholder="Enter your password" />
+    <button type="submit">Отправить</button>
 </form>
 </body>
 </html>

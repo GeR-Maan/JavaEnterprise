@@ -9,38 +9,34 @@ import ru.german.javaenterprise.practice.models.Account;
 import ru.german.javaenterprise.practice.storage.JdbcAccountStorage;
 
 import java.io.IOException;
-import java.util.Optional;
 
 
-@WebServlet("/account/login")
-public class AccountLoginServlet extends HttpServlet {
+@WebServlet("/account/update")
+public class UpdateAccountId extends HttpServlet {
 
-    private  final JdbcAccountStorage storage = new JdbcAccountStorage();
+    private final JdbcAccountStorage storage = new JdbcAccountStorage();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        getServletContext().getRequestDispatcher("/pages/acc-login.jsp").forward(req, resp);
-
+        req.getRequestDispatcher("/pages/update.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        Account account = (Account) req.getSession().getAttribute("account");
+
+        String name = req.getParameter("name");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        Optional<Account> byUsername = storage.findByUsername(username);
-        if (byUsername.isPresent()) {
-            Account account = byUsername.get();
-            if (password.equals(account.getPassword())) {
-                req.getSession().setAttribute("account", account);
-                resp.sendRedirect("/home");
-                return;
 
-            }
-        }
-        getServletContext().getRequestDispatcher("/pages/acc-login.jsp").forward(req, resp);
+        storage.updateById(account.getId(), name, username, password);
+        account.setName(name);
+        account.setUsername(username);
+        account.setPassword(password);
+
+        resp.sendRedirect("/home");
 
 
     }

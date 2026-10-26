@@ -11,19 +11,19 @@ import ru.german.javaenterprise.practice.storage.JdbcAccountStorage;
 import java.io.IOException;
 
 
-@WebServlet("/account/reg")
-public class AccountRegServlet extends HttpServlet {
 
-    private final JdbcAccountStorage jdbcAccountStorage = new JdbcAccountStorage();
+@WebServlet("/account/reg")
+public class RegisterServlet extends HttpServlet {
+
+    private final JdbcAccountStorage storage = new JdbcAccountStorage();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/pages/acc-reg.jsp").forward(req, resp);
-
+        req.getRequestDispatcher("/pages/acc-reg.jsp").forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String name = req.getParameter("name");
         String email = req.getParameter("email");
@@ -40,7 +40,9 @@ public class AccountRegServlet extends HttpServlet {
 
         account.setProfile(profile);
 
-        jdbcAccountStorage.save(account);
+        storage.save(account);
+
+        req.getSession().setAttribute("account", account);
 
         resp.sendRedirect("/home");
 

@@ -12,9 +12,9 @@
 </head>
 <body>
 <form action="/account/login" method="post">
-  <input type = "text" name = "username" placeholder="Username">
-  <input type="text" name="password" placeholder="Password">
-  <button>Submit</button>
+    <input type="text" name="username" placeholder="Enter your username" />
+    <input type="text" name="password" placeholder="Enter your password" />
+    <button type="submit">Отправить</button>
 </form>
 </body>
 </html>

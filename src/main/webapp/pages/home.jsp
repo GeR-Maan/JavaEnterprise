@@ -11,10 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-<span>Hello ${sessionScope.account.name}!</span>
-<a href="/account/reg">Sing UP</a>
-<a href="/account/login">Sing IN</a>
-<a href="/account/logout">Sing OUT</a>
-
+<span>Hello ${sessionScope.account.name} - ${sessionScope.account.profile.email}!</span>
+<a href="/account/login">Login</a>
+<a href="/account/reg">Registration</a>
+<a href="/account/update">Update</a>
+<a href="/account/logout">Logout</a>
 </body>
 </html>
