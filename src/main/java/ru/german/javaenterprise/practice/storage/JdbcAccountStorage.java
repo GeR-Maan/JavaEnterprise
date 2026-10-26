@@ -95,7 +95,7 @@ public class JdbcAccountStorage {
         try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
                     "postgres", "8948");
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM accounts");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM accounts JOIN profiles ON accounts.profile_id = profiles.id");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             List<Account> accounts = new ArrayList<>();
@@ -106,7 +106,14 @@ public class JdbcAccountStorage {
                 account.setName(resultSet.getString("name"));
                 account.setUsername(resultSet.getString("username"));
                 account.setPassword(resultSet.getString("password"));
-                accounts.add(account);
+
+                Profile profile = new Profile();
+                profile.setId(resultSet.getLong("profile_id"));
+                profile.setEmail(resultSet.getString("email"));
+
+                account.setProfile(profile);
+
+
             }
             return accounts;
 
@@ -117,5 +124,25 @@ public class JdbcAccountStorage {
 
     }
 
+    public void deleteById(Long id) {
 
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "8948");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE * FROM accounts WHERE id = ? RETURNING profile_id");
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            long pId = resultSet.getLong("profile_id");
+
+            PreparedStatement preparedStatement2 = connection.prepareStatement("DELETE FROM profiles WHERE id = ?");
+            preparedStatement2.setLong(1, pId);
+            preparedStatement2.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 }

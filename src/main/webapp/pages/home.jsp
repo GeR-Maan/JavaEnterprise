@@ -15,6 +15,7 @@
 <a href="/account/login">Login</a>
 <a href="/account/reg">Registration</a>
 <a href="/account/update">Update</a>
+<a href="/account/delete">Delete</a>
 <a href="/account/logout">Logout</a>
 </body>
 </html>
