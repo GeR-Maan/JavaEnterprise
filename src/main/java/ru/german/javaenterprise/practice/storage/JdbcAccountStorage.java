@@ -19,7 +19,7 @@ public class JdbcAccountStorage {
         try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
                     "postgres", "8948");
-
+            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO profiles VALUES (default, ?) RETURNING id");
             preparedStatement.setString(1, account.getProfile().getEmail());
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -34,6 +34,7 @@ public class JdbcAccountStorage {
             preparedStatement2.setString(3,account.getPassword());
             preparedStatement2.setLong(4,pId);
             preparedStatement2.executeUpdate();
+            connection.commit();
 
 
         } catch (SQLException e) {
@@ -129,6 +130,7 @@ public class JdbcAccountStorage {
         try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
                     "postgres", "8948");
+            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE * FROM accounts WHERE id = ? RETURNING profile_id");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -138,6 +140,7 @@ public class JdbcAccountStorage {
             PreparedStatement preparedStatement2 = connection.prepareStatement("DELETE FROM profiles WHERE id = ?");
             preparedStatement2.setLong(1, pId);
             preparedStatement2.executeUpdate();
+            connection.commit();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
